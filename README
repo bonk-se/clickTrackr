@@ -1,0 +1,39 @@
+clickTrackr
+===========
+
+Bonk clickTrackr is a simple javascript that can track and log a visitors
+clicks on your site and generate heatmaps over the tracked pages. It can be
+configured to track all clicks or just the last click the visitors does before
+leaving the page.
+
+Full documentation can be found @ http://bonk.se/clickTrackr
+
+
+**Setup**
+
+Put the compressed version of clickTrackr.js where you want it and include the
+following in the footer of the page you want to track:
+
+<script type="text/javascript" src="/PATH/TO/clickTrackr.js"></script>
+<script type="text/javascript">
+bCT.init();
+</script>
+
+Create the database tables required by running the queries in setup/db-setup.sql.
+Put the PHP-files at /clickTrackr/log.php on your server (no changes needed in 
+clickTrackr.js then) and modify config.php to your liking.
+
+
+**Usage**
+
+bCT.init({ all, freq, refId, log, url, maxX, maxY });
+See src/clickTrackr.js for specific info and how to modify default values.
+
+# Arg	Default	Description
+*all*	(false)	Track all clicks on the page or just
+*freq*	(1)	Frequense - Only initiate the tracking for every N'th time.
+*refId*	(null)	Element id where reference point (0, 0) should be.
+*log*	('/clickTrackr/log.php?')	URL for the log script or where the 1x1-gif-image is located.
+*url*	(document.location.href)	The current page where the script is running.
+*maxX*	(-1)	Upper limit for X-values to track.
+*maxY*	(-1)	Upper limit for Y-values to track.
