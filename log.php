@@ -158,7 +158,7 @@ if (!empty($pos) && is_array($pos) && $url) {
 	/* path and pathId */
 	if (!$pathId) {
 		$pathEscaped = mysql_real_escape_string($path, $db);
-		$sql = 'SELECT id FROM paths WHERE path = "'.$pathEscaped.'"';
+		$sql = 'SELECT id FROM clickTrackr_paths WHERE path = "'.$pathEscaped.'"';
 		$res = mysql_query($sql);
 		if ($res) {
 			list($pathId) = mysql_fetch_row($res);
