@@ -54,7 +54,15 @@ $memcacheServers = array(
 );
 
 /**
- * MySQL settings
+ * Write each logged click to syslog instead of MySQL.
+ * Log rows have the following format: clickTrackr - {"host", "path", x, y, timestamp}
+ *
+ * @var bool
+ */
+$useSyslog = false;
+
+/**
+ * MySQL settings - Only used if $useSyslog is false.
  * @var array
  */
 $mysql = array(

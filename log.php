@@ -78,6 +78,23 @@ if (!empty($pos) && is_array($pos) && $url) {
 		exit();
 	}
 
+	/*
+	 * Log to syslog ONLY (skips logging to MySQL)
+	 */
+	if ($useSyslog) {
+		openlog('clickTrackr', LOG_PID | LOG_ODELAY, LOG_LOCAL0);
+		foreach ($pos as $p) {
+			$x = intval($p[0]);
+			$y = intval($p[1]);
+			if (0 > $x || 0 > $y || 65535 < $x || 65535 < $y) {
+				/* Ignore too large values */
+				continue;
+			}
+			syslog(LOG_INFO, 'clickTrackr - '.json_encode(array($host, $path, $x, $y, time())));
+		}
+		closelog();
+	}
+
 	/* Get hostId and pathId from memcache */
 	if (!empty($memcacheServers)) {
 		$memcache = new Memcached();
