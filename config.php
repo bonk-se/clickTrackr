@@ -44,6 +44,17 @@ $blockedHosts = array(
 $knownHosts = null;
 
 /**
+ * Write each logged click to syslog instead of MySQL.
+ * Log rows have the following format: clickTrackr - {"host", "path", x, y, timestamp}
+ *
+ * @var bool
+ */
+$useSyslog = false;
+
+
+/*=== SETTINGS BELOW NOT NEEDED IF $useSyslog IS ENABLED ===*/
+
+/**
  * Memcache servers ("null" disables memcache features)
  * @link http://tangent.org/552/libmemcached.html libmemcached client
  * @link http://memcached.org/ memcached server
@@ -52,14 +63,6 @@ $knownHosts = null;
 $memcacheServers = array(
 	array('localhost', 11211),
 );
-
-/**
- * Write each logged click to syslog instead of MySQL.
- * Log rows have the following format: clickTrackr - {"host", "path", x, y, timestamp}
- *
- * @var bool
- */
-$useSyslog = false;
 
 /**
  * MySQL settings - Only used if $useSyslog is false.

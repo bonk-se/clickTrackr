@@ -2,7 +2,7 @@
 /**
  * clickTrackr Logger
  * Receives a request from the client, returns the code for a 1x1-gif and closes the connection.
- * Then the data is parsed and stored in a MySQL database.
+ * Then the data is parsed and stored in a MySQL database or syslog
  *
  * If you have a lot of clicks to track and don't have the database-performance for it,
  * I strongly suggests that you get this data by parsing the access log instead (and set
@@ -11,8 +11,7 @@
  * @package clickTrackr
  * @version 0.6.1
  *
- * @uses MySQL
- * @uses Memcached
+ * @uses MySQL, Memcached OR syslog
  *
  * @link http://bonk.se/clickTrackr
  * @author miken@bonk.se
@@ -93,6 +92,7 @@ if (!empty($pos) && is_array($pos) && $url) {
 			syslog(LOG_INFO, 'clickTrackr - '.json_encode(array($host, $path, $x, $y, time())));
 		}
 		closelog();
+		exit();
 	}
 
 	/* Get hostId and pathId from memcache */
