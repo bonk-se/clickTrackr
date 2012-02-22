@@ -21,7 +21,8 @@ bCT.init();
 
 Create the database tables required by running the queries in setup/db-setup.sql.
 Put the PHP-files at /clickTrackr/log.php on your server (no changes needed in 
-clickTrackr.js then) and modify config.php to your liking.
+clickTrackr.js then).
+Copy config.php-EXAMPLE to config.php and modify to your liking.
 
 
 **Usage**
