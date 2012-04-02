@@ -105,6 +105,8 @@ if (!empty($pos) && is_array($pos) && $url) {
 			}
 		}
 		$memcache->setOption(Memcached::OPT_LIBKETAMA_COMPATIBLE, true);
+		$memcache->setOption(Memcached::OPT_DISTRIBUTION, Memcached::DISTRIBUTION_CONSISTENT);
+		$memcache->setOption(Memcached::OPT_HASH, Memcached::HASH_FNV1_32);
 
 		$mcKeyHost = 'bct_host_'.$host;
 		$mcKeyPath = 'bct_path_'.$path;
