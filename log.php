@@ -23,7 +23,7 @@ require('config.php');
 /* Filter input data */
 $pos = (!empty($_GET['p'])) ? json_decode($_GET['p']) : null;
 $url = (!empty($_GET['u'])) ? filter_var(urldecode($_GET['u']), FILTER_VALIDATE_URL) : null;
-if (!$url) {
+if (!$url && isset($_SERVER['HTTP_REFERER'])) {
 	/* No URL was sent, fallback to referer */
 	$url = filter_var($_SERVER['HTTP_REFERER'], FILTER_VALIDATE_URL);
 }
